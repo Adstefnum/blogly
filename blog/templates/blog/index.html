@@ -1,0 +1,106 @@
+{% extends 'blog/base.html' %}
+{% block titdes %}-Django powered blog{% endblock titdes %}
+{% block page %}Home{% endblock page %}
+{% block body %}
+    <div class="main-wrap">
+        <div class="section section-padding blog-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="blog-listing">
+                    	{% for blog in object_list %}
+                        <article class="col-md-6 post">
+                            <div class="post-inner">
+                                <a class="post-thumb" href="#">
+                                    <img class="img-responsive" src="{{ blog.post_pic.url }}" alt="Blog Image" height="300px" width="300px">
+                                </a>
+                                <p class="post-metas">
+                                    <span class="author-meta post-meta"><i class="fa fa-user"></i> Admin</span>
+                                    <span class="date-meta post-meta"><i class="fa fa-calendar"></i>{{ blog.posted }}</span>
+                                </p>
+                                <h3 class="post-title"><a href="{% url 'blog:post' blog.id %}">{{ blog.title }}</a></h3>
+                                <p class="post-excerpt">
+                                    {{ blog.slug }}
+                                </p>
+                                <a class="btn btn-border" href="{% url 'blog:post' blog.id %}">Read more</a>
+                            </div>
+                        </article>
+                        {% endfor %}
+                        <div class="col-xs-12">
+                            <nav class="navigation post-pagination" role="navigation">
+                                <div class="nav-links">
+                                    <a class="prev page-numbers" href="#"><i class="fa fa-angle-double-left"></i></a>
+                                    <span class="page-numbers current">1</span>
+                                    <a class="page-numbers" href="#">2</a>
+                                    <a class="page-numbers" href="#">3</a>
+                                    <a class="page-numbers" href="#">4</a>
+                                    <a class="page-numbers" href="#">5</a>
+                                    <a class="next page-numbers" href="#"><i class="fa fa-angle-double-right"></i></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+
+        <!-- Footer Subscribe -->
+        <div class="subscription-area section-padding theme-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Subscribe to the<br/>newsletter</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="subscription" action="#" method="post">
+                            <input type="email" name="email" placeholder="Enter your mail here" required>
+                            <button type="submit">Submit</button>
+                            <p class="newsletter-success"></p>
+                            <p class="newsletter-error"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Subscribe -->
+
+        <!-- Footer logo and social media button -->
+        <div class="logo-social-area section-padding">
+            <div class="container text-center">
+                <a class="logo logo-footer" href="#">
+                    BLOG
+                </a>
+                <div class="socials">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-vimeo"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Footer logo and social media button -->
+
+        <!-- Footer copyrgiht and navigation -->
+        <div class="copyright-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="copyright">Copyright 2020, <a href="#">Blog</a>. All Right Reserved</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="footer-nav">
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Legal</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer copyrgiht and navigation -->
+    </footer>
+{% endblock %}
+
