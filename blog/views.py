@@ -11,6 +11,3 @@ class IndexView(ListView):
 class PostView(DetailView):
 	model = Blog
 	template_name = "blog/post.html"
-
-	def get_queryset(self):
-		return Blog.objects.all()
