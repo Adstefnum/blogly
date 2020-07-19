@@ -11,14 +11,14 @@
                         <article class="col-md-6 post">
                             <div class="post-inner">
                                 <a class="post-thumb" href="#">
-                                    <img class="img-responsive" src="{{ blog.post_pic.url }}" alt="Blog Image" height="300px" width="300px">
+                                    <img class="img-responsive" src="{{ blog.post_pic.url }}" alt="Blog Image" style="width:500px;height:350px;">
                                 </a>
                                 <p class="post-metas">
                                     <span class="author-meta post-meta"><i class="fa fa-user"></i> Admin</span>
-                                    <span class="date-meta post-meta"><i class="fa fa-calendar"></i>{{ blog.posted }}</span>
+                                    <span class="date-meta post-meta"><i class="fa fa-calendar"></i >&nbsp&nbsp{{ blog.posted }}</span>
                                 </p>
                                 <h3 class="post-title"><a href="{% url 'blog:post' blog.id %}">{{ blog.title }}</a></h3>
-                                <p class="post-excerpt">
+                                <p class="post-excerpt" style="width:300px; margin-right: 100px;">
                                     {{ blog.slug }}
                                 </p>
                                 <a class="btn btn-border" href="{% url 'blog:post' blog.id %}">Read more</a>
