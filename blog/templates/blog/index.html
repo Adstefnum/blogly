@@ -15,11 +15,11 @@
                                 </a>
                                 <p class="post-metas">
                                     <span class="author-meta post-meta"><i class="fa fa-user"></i> Admin</span>
-                                    <span class="date-meta post-meta"><i class="fa fa-calendar"></i >&nbsp&nbsp{{ blog.posted }}</span>
+                                    <span class="date-meta post-meta"><i class="fa fa-calendar"></i >&nbsp&nbsp{{ blog.posted  }}</span>
                                 </p>
                                 <h3 class="post-title"><a href="{% url 'blog:post' blog.id %}">{{ blog.title }}</a></h3>
                                 <p class="post-excerpt" style="width:300px; margin-right: 100px;">
-                                    {{ blog.slug }}
+                                    {{ blog.slug | linebreaks }}
                                 </p>
                                 <a class="btn btn-border" href="{% url 'blog:post' blog.id %}">Read more</a>
                             </div>

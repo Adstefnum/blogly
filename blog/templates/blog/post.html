@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
-{% block titdes %}-{{ object.title }}{% endblock titdes %}
-{% block page %}{{ object.title }}{% endblock page %}
+{% block titdes %}-{{ blog.title }}{% endblock titdes %}
+{% block page %}{{ blog.title }}{% endblock page %}
 {% block body %}
 
  <!-- Page Content -->
@@ -12,7 +12,7 @@
       <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4">{{ object.title }}</h1>
+        <h1 class="mt-4">{{ blog.title }}</h1>
 
         <!-- Author -->
         <p class="lead">
@@ -23,38 +23,35 @@
         <hr>
 
         <!-- Date/Time -->
-        <p>{{ object.posted }}</p>
+        <p>{{ blog.posted }}</p>
 
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{ object.post_pic.url }}" alt="" style="width:800px;height:400px;">
+        <img class="img-fluid rounded" src="{{ blog.post_pic.url }}" alt="" style="width:800px;height:400px;">
 
         <hr>
 
         <!-- Post Content -->
-        <p style = "width:1000; margin-left: 100px; margin-right: 100px;" class="lead">{{ object.body }}</p>
+        <p style = "width:1000; margin-left: 100px; margin-right: 100px;" class="lead">{{ blog.body | linebreaks }}</p>
 
-        <!-- Comments Form -->
-        <div class="card my-4">
+       
           <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-
+          <form method="POST">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        {% for comment in comments %}
         <!-- Single Comment -->
         <div class="media mb-4">
           <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <h4 class="mt-0">{{ comment.name }}</h4>
+            <h6>{{ comment.email }}</h6></br>
+            {{ comment.body| linebreaks }}</br></br>
           </div>
         </div>
+        {% endfor %}
 
           </div>
         </div>
