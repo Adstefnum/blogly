@@ -2,7 +2,6 @@
 {% block titdes %}-{{ blog.title }}{% endblock titdes %}
 {% block page %}{{ blog.title }}{% endblock page %}
 {% block body %}
-
  <!-- Page Content -->
   <div class="container">
 
@@ -43,20 +42,43 @@
           <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         {% for comment in comments %}
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <div class="media-body">
-            <h4 class="mt-0">{{ comment.name }}</h4>
-            <h6>{{ comment.email }}</h6></br>
-            {{ comment.body| linebreaks }}</br></br>
-          </div>
-        </div>
+        <blockquote>
+            {{ comment.body| linebreaks }}
+            <footer><h6 >{{ comment.name }} | 
+            {{ comment.created_on }} | 
+
+            {% if comment.replies.all > 0 %} 
+
+            {{comment.replies.all}} replies
+            {% if comment.count == 1 %}
+            {{ comment.replies.all }} reply
+            {% endif %}
+              {% else %}
+            No replies
+            {% endif%}|
+            <a href="#" class="comment-reply-btn">Reply</a></h6></footer>
+
+            <div id="comment-reply" style="display: none;">
+              {% for reply in comment.replies.all %}
+            <blockquote>
+            {{ reply.body| linebreaks }}
+            <footer>{{ reply.name }} | 
+            {{ reply.created_on }}</footer></blockquote> {% endfor %}
+
+            <form method="POST">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="parent_id">
+          <button type="submit" class="btn btn-primary">Reply</button>
+          </form>
+            
+         </div>
+        
+        </blockquote>
+        {% empty %}
+        <h6>Be the first to leave a comment</h6>
         {% endfor %}
 
-          </div>
-        </div>
-
-      </div>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
@@ -65,5 +87,7 @@
     </div>
     <!-- /.container -->
   </footer>
+
+
 
 {% endblock %}

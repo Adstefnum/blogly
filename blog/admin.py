@@ -14,3 +14,5 @@ class CommentAdmin(admin.ModelAdmin):
 
 	def remove(self,request,query_set):
 		query_set.update(active = False)
+
+

@@ -54,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{% url 'blog:index' %}">
                     BLOG
                 </a>
             </div>
@@ -94,6 +94,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
     <script src="{% static 'blog/js/map.js' %}"></script>
     <script src="{% static 'blog/js/custom.js' %}"></script>
+    <script>
+        $(".comment-reply-btn").click(function(event){
+            event.preventDefault();
+            if ($("#comment-reply").is(':hidden')) {
+     $("#comment-reply").show();}
+else  {
+     $("#comment-reply").hide();}
+        })
+
+    </script>
 </body>
 
 </html>
