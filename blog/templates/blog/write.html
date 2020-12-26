@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block back-img %}'{% static 'blog/assets/img/intro.jpg' %}'{% endblock back-img %}
+ {% block titdes %}Write{% endblock titdes %}
+ {% block title %}Write{% endblock title %}
+ {% block pagedes %}A django powered community blog{% endblock pagedes %}
+{% block body%}
+
+<form method = "POST">
+{{ post_form.as_p }}
+{% csrf_token %}
+<input type="submit" value = "submit" class="btn btn-secondary"/>
+</form>
+{% endblock %}

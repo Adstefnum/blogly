@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block back-img %}'{% static 'blog/assets/img/intro.jpg' %}'{% endblock back-img %}
+ {% block titdes %}Register{% endblock titdes %}
+ {% block title %}Register{% endblock title %}
+ {% block pagedes %}Join the largest django powered community blog{% endblock pagedes %}
+{% block body %}
+<div class = "text-center">
+	{% if messages %}
+		{% for message in messages %}
+		<div class = "alert alert-sucess font"><b>{{ message}}</b></div>
+		{% endfor %}
+	{% endif %}
+<form method = "POST">
+{{ reg_form.as_p }}
+{% csrf_token %}
+<button class = "btn btn-info font"><b>Submit</b></button>
+</form>
+</div>
+{% endblock %}

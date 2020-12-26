@@ -1,14 +1,31 @@
-from .models import Comment
+from .models import Comment,Blog
 from django import forms
+from django_summernote.widgets import SummernoteWidget
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-class subscribeForm(forms.Form):
-	email = forms.CharField(label='email', max_length=100)
+class regForm(UserCreationForm):
 
+	class Meta:
+		model = User
+		fields = ['username','email','first_name','last_name']
+		
 class commentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
 		fields = ('name', 'email', 'body')
+		widgets = {
+			'body':SummernoteWidget(),
+		}
 	
-	'''name = forms.CharField(widget=forms.TextInput ,label='Name', max_length=100, required = True)
-	email = forms.EmailField(label='Email', required=True)#change thiswhen user authentication is enabled
-	body = forms.CharField(label='Comment', max_length=100, widget=forms.Textarea, required = True)'''
+
+class postForm(forms.ModelForm):
+	class Meta:
+		model = Blog
+		fields = ('title', 'slug', 'post_pic','body')
+		widgets = {
+			'body':SummernoteWidget(),
+		}
+
+
+        

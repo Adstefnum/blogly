@@ -4,10 +4,11 @@ from django.urls import reverse
 
 class Blog(models.Model):
    title = models.CharField(max_length=100, unique=True)
-   slug = models.SlugField(max_length=100, unique=True)
+   slug = models.CharField(max_length=100, unique=True)
    post_pic = models.ImageField(upload_to ='media/post_pics/', default =None )
    body = models.TextField()
    posted = models.DateTimeField(db_index=True, auto_now_add=True)
+   #author = must be logged in, populate from login details
 
    def __str__(self):
    	return self.title

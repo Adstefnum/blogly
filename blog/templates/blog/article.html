@@ -1,0 +1,82 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block back-img %}{{ blog.post_pic.url }}{% endblock back-img %}
+ {% block titdes %}{{ blog.title }}{% endblock titdes %}
+ {% block title %}{{ blog.title }}{% endblock title %}
+ {% block pagedes %}
+<!-- Date/Time -->
+        <p style = "margin-bottom:20px">{{ blog.posted }}</p>
+
+ by
+          <!--redirect to author profile-->
+          <a href="#">Admin</a>{% endblock pagedes %}
+{% block body %}
+
+<!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Post Content -->
+        <p style = "width:1000; margin-left: 100px; margin-right: 100px;" class="lead">{{ blog.body | linebreaks }}</p>
+
+       
+          <h5 class="card-header">Leave a Comment:</h5>
+          <form method="POST">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        {% for comment in comments %}
+        <blockquote>
+            {{ comment.body| linebreaks }}
+            <footer><h6 >{{ comment.name }} | 
+            {{ comment.created_on }} | 
+
+            {% if comment.replies.all > 0 %} 
+
+            {{comment.replies.all}} replies
+            {% if comment.count == 1 %}
+            {{ comment.replies.all }} reply
+            {% endif %}
+              {% else %}
+            No replies
+            {% endif%}|
+            <a href="#" class="comment-reply-btn">Reply</a></h6></footer>
+
+            <div id="comment-reply" style="display: none;">
+              {% for reply in comment.replies.all %}
+            <blockquote>
+            {{ reply.body| linebreaks }}
+            <footer>{{ reply.name }} | 
+            {{ reply.created_on }}</footer></blockquote> {% endfor %}
+
+            <form method="POST">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="parent_id">
+          <button type="submit" class="btn btn-primary">Reply</button>
+          </form>
+            
+         </div>
+        
+        </blockquote>
+        {% empty %}
+        <h6>Be the first to leave a comment</h6>
+        {% endfor %}
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+
+
+{% endblock %}

@@ -1,100 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <!-- Metas -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog {% block titdes %}{% endblock titdes %}</title>
-    <meta name="description" content="BLOG -A blog template built on the python Django web framework">
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Blogly- {% block title %}{% endblock title %}</title>
+<meta name="description" content="A django powered blog"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	{% load static %}
-    <!-- External CSS -->
-    <link rel="stylesheet" href="{% static 'blog/assets/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/et-line.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/owl.carousel.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/owl.transitions.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/assets/css/plyr.css' %}">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/responsive.css' %}">
-
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400%7CUbuntu:400,700%7COpen+Sans" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/icon-114x114.png' %}">
+{% load static %}
+<link rel="shortcut icon" href="#">
+<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/screen.css' %}"/>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,700,700italic|Playfair+Display:400,700,400italic,700italic"/>
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
 
 </head>
-
-<body>
-
-    <!-- Preloader -->
-    <div class="loader-wrap" id="loader-wrap">
-        <div class="cssload-loader"></div>
-    </div>
-    <!-- Preloader End -->
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default" data-spy="affix" data-offset-top="60">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'blog:index' %}">
-                    BLOG
-                </a>
-            </div>
-
-             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right" id="one-page-nav">
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    <!-- Navigation End -->
-
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="container text-center">
-            <h1 class="page-title">Blog</h1>
-                <li><a href="#">{% block page %}{% endblock page %}</a></li>
-        </div>
-    </div>
-    <!-- Page Header End -->
-{% block body %}
+<body class="home-template">
+<div class="site-wrapper">
+	<nav class="main-nav overlay clearfix">
+	<a class="blog-logo" href="index.html"><p style = "font-family: Tahoma">Blogly</p></a>
+	<ul id="menu">
+		<li class="nav-home nav-current" role="presentation"><a href="{% url 'blog:index' %}">Home</a></li>
+		<li class="nav-2nd" role="presentation"><a href="{% url 'blog:write' %}">write</a></li>
+		<li class="nav-author-page" role="presentation"><a href="{% url 'blog:author' %}">Author Page</a></li>
+		<span class="socialheader">
+		<a href="#"><span class='symbol'>circletwitterbird</span></a>
+		<a href="#"><span class='symbol'>circlefacebook</span></a>
+		<a href="#"><span class='symbol'>circlegoogleplus</span></a>
+		<a href="mailto:wowthemesnet@gmail.com"><span class='symbol'>circleemail</span></a>
+		</span>
+	</ul>
+	</nav>
+	<header class="main-header " style="background-image: url({% block back-img %}{% endblock back-img %})">
+	<div class="vertical">
+		<div class="main-header-content inner">
+			<h1 class="page-title">{% block titdes %}{% endblock titdes %}</h1>
+			<div class="entry-title-divider">
+				<span></span><span></span><span></span>
+			</div>
+			<!-- put django powered blog on home page etc but on post pages put author name-->
+			<h2 class="page-description">{% block pagedes %}{% endblock pagedes %}</h2>
+		</div>
+	</div>
+	<a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+	</header>
+	<main id="content" class="content" role="main">
+	<div class="wraps">
+		<img src="{% static 'blog/assets/img/shadow.png' %}" class="wrapshadow">
+		<div class="grid">
+	{% block body %}
 {% endblock %}
- <!-- Script -->
-    <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
-    <script src="{% static 'blog/assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'blog/assets/js/jquery.nav.js' %}"></script>
-    <script src="{% static 'blog/assets/js/wow.min.js' %}"></script>
-    <script src="{% static 'blog/assets/js/jquery.localScroll.min.js' %}"></script>
-    <script src="{% static 'blog/assets/js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'blog/assets/js/owl.carousel.js' %}"></script>
-    <script src="{% static 'blog/assets/js/plyr.js' %}"></script>
-    <script src="{% static 'blog/assets/js/jquery.ajaxchimp.min.js' %}"></script>
-    <script src="{% static 'blog/assets/js/jquery.stellar.min.js' %}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmiJjq5DIg_K9fv6RE72OY__p9jz0YTMI"></script>
-    <script src="{% static 'blog/js/map.js' %}"></script>
-    <script src="{% static 'blog/js/custom.js' %}"></script>
-    <script>
+
+<footer class="site-footer clearfix">
+	<a href="#top" id="back-to-top" class="back-top"></a>
+	<div class="text-center">
+		<a href="index.html">Nectaria Template</a> &copy; 2016<br/>
+		Free HTML Template by <a href="https://wowthemes.net">WowThemes.net</a>
+	</div>
+	</footer>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="{% static 'blog/assets/js/masonry.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/assets/js/jquery.fitvids.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/assets/js/index.js' %}"></script>
+<script>
         $(".comment-reply-btn").click(function(event){
             event.preventDefault();
             if ($("#comment-reply").is(':hidden')) {
@@ -105,5 +75,4 @@ else  {
 
     </script>
 </body>
-
 </html>

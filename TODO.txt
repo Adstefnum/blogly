@@ -1,0 +1,20 @@
+recreate individual blog page
+make page for writing blogs
+	pic
+	title
+	content
+	user
+make security:login
+they comment and read as the user and can gain writing priviledges to write articles
+readers can subscribe to specific users who can have their email addresses to send stuff like alerts
+make opportunity to update blog posts
+redirect to blog post after publishing
+make them users, anyone can write and read as logined user but can only read if not logined
+redirect to author profile when name is clicked
+collect author profile pics ad show it on their article pages and their profile page
+make another model for other user info like bio, social media, think of more
+put login on the navbar
+
+make it like a subdomain so that the author can send the link to somone and they ca read only their posts exclusively i.e adstefnum.blogly.com so then they can only read adstefnum's posts alone just display articles and the next or previous button for this template no homepage
+
+add next and previous button to posts
