@@ -2,10 +2,9 @@ from django.views.generic.edit import View
 from django.views.generic import ListView, DetailView
 from .forms import *
 from django.shortcuts import render,get_object_or_404, redirect
-from django.contrib.auth import authenticate, login
 from django.http import  HttpResponseRedirect
 from .models import *
-from django.contrib import messages
+
 
 class IndexView(ListView):
 	template_name = "blog/index.html"
@@ -72,35 +71,4 @@ def author_detail(request):
     
     if request.method == 'POST':
         pass 
-
-def register(request):
-    template_name = 'blog/register.html'
-    
-    if request.method == 'POST':
-
-        reg_form = regForm(request.POST)
-        
-        if reg_form.is_valid():
-            reg_form.save()
-            messages.success(request,'You have been Successfully registered')
-
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('blog:index')
-
-
-
-    else:
-        reg_form = regForm()
- 
-    return render(request, template_name, {'reg_form': reg_form})
-
-
-
-
-
-	
 
