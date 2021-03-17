@@ -5,3 +5,4 @@ __pycache__
 *.pyc
 *.pot
 db.sqlite3
+.vscode
